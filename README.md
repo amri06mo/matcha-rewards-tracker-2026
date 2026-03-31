@@ -1,13 +1,13 @@
-# bcog-final-project-2026
+# Matcha Rewards Tracker (BCOG 200 Final Project)
 Final project for Bcog200 at UIUC
 
-What is it?
+🤔 What is it?:
 
 This Project will be a functional inventory and profit-tracking system for the resale market.
 The system allows users to log thrifted items, calculate net profits (accounting for platform selling fees and initial costs), and then translate that financial data into a "Matcha reward" system. By converting currency into a personal "Matcha" metric and assigning reward tiers based
 on profit levels, the tool turns inventory management into a fun lifestyle oriented experience!
 
-Functions
+🙃 Functions: 
 
 a. calculate_net_profit(buy_price, sell_price) : This function will take the item's purchase 
 price and sale prices as inputs to calculate the actual earnings. It will automatically subract
