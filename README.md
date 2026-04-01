@@ -18,3 +18,5 @@ b. calculate_matcha_units(profit, matcha_cost) : This function will convert the 
 a rounded numerical number representing the total number of drinks earned, or a specific message if the profit is too low to afford a drink.
 
 c. assign_reward_tier(profit) : this function will use conditional logic to assign a specific status based on the profit amount. It'll categorize the flip into tiers ranging from  "matcha made at home" for smaller profits to "Ceremonial matcha latte" for high value sales to provide the user with immediate feedback.
+
+Data Structure: The inventory.csv file uses the following order: Item Name, Buy Price, Sell Price, Net profit, Reward Tier.
