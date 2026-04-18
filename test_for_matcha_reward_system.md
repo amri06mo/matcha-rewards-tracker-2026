@@ -16,10 +16,10 @@ The goal here is to confirm that the math, the reward conversion, and tier syste
     - Buy Price: '10.00'
     - Sell Price: '100.00'
 3. **EXPECTED LOGIC CALCULATION:**
-    - Platform fee: $100 \times 0.10 = 10$
-    - Net Profit: $100 - 10 - 10 = 80$
-    - Matcha Units (9$ each): $80 / 9 = 8$ Lattes (rounded down)
-4. **EXPECTED OUTPUT:** The screen should display a net profit of **80.00$**, a reward of **8 Matcha Lattes**, and the **"Ceremonial Matcha Latte"** tier.
+    - Platform fee: $100 \times 0.10 + 10 = 11$
+    - Net Profit: $100 - 10 - 11 = 79$
+    - Matcha Units (9$ each): $79 / 9 = 8$ Lattes (rounded down)
+4. **EXPECTED OUTPUT:** The screen should display a net profit of **79.00$**, a reward of **8 Matcha Lattes**, and the **"Ceremonial Matcha Latte"** tier.
 
 ---
 
@@ -32,8 +32,8 @@ The goal of this test is to ensure the system handles low-profit or negative-pro
     - Buy price: '8.00'
     - Sell price: '10.00'
 3. **EXPECTED LOGIC CALCULATION:**
-    - Profit: $(10 \ times 0.9) - 8 = 1.00$
-4. **EXPECTED OUTPUT:** The screen should display a profit of **$1.00**, but the reward message should state: **"Not enough for a matcha yet. Keep grinding!"** and assign the **"Matcha made at home."** tier.
+    - Profit: $(10 \ times 0.9) - 8 - 2.00 = 0.00$
+4. **EXPECTED OUTPUT:** The screen should display a profit of **$0.00**, but the reward message should state: **"Not enough for a matcha yet. Keep grinding!"** and assign the **"Matcha made at home."** tier.
 
 ---
 
@@ -44,4 +44,4 @@ The goal here is to prove the data is actually saved to teh CSV
 2. **ACTION:** Open the folder on your computer and locate 'inventory.csv'.
 3. **EXPECTED RESULT:** The file should contain two rows of data corresponding to the "Vintage crewneck" and the "Fast fashion tee" with all calculated fields present.
 4. **ACTION:** Restart the program and select option '2' (View total matchas earned).
-5. **EXPECTED RESULT:** The program should read the csv and display a total lifetime profit of **$81.00** and **9 total lattes** earned.
+5. **EXPECTED RESULT:** The program should read the csv and display a total lifetime profit of **$79.00** and **8 total lattes** earned.
