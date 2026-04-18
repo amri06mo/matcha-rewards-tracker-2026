@@ -8,7 +8,7 @@ This file gives instructions for the testing procedure, making sure that the Mat
 2. If an 'inventory.csv' already exists, delete it to start with a fresh database. 
 3. Run the program using 'uv run main.py'
 
-## Test Scenario 1: 🌟 Successfull high-value sale 🌟
+## Test Scenario 1: Successfull high-value sale 🌟
 The goal here is to confirm that the math, the reward conversion, and tier system will all work for a profitable item.
 
 1. **ACTION:** Select option '1' (Add an item) from the menu
@@ -23,7 +23,7 @@ The goal here is to confirm that the math, the reward conversion, and tier syste
 
 ---
 
-## Test Scenario 2: 😔 The "break even" or loss 💔
+## Test Scenario 2: The "break even" or loss 💔
 The goal of this test is to ensure the system handles low-profit or negative-profit scenarios gracefully.
 
 1. **ACTION:** Select option '1' (Add an item) from the menu
