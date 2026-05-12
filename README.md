@@ -1,16 +1,33 @@
 # Matcha Rewards Tracker (BCOG 200 Final Project)
 
-🤔 What is it?: 
+### 🤔 What is it?: 
 
-This Project will be a functional inventory and profit-tracking system for the resale market. The system allows users to log thrifted items, calculate net profits (accounting for platform selling fees and initial costs), and then translate that financial data into a "Matcha reward" system. By converting currency into a personal "Matcha" metric and assigning reward tiers based on profit levels, the tool turns inventory management into a fun lifestyle oriented experience🍵!
+The **Matcha Rewards Tracker** is a functional inventory and profit-tracking system designed for the resale market. The system allows users to log thrifted items, calculate net profits (accounting for platform selling fees and initial costs), and then translate that financial data into a "Matcha reward" system. 
 
+By converting currency into a personal "Matcha" metric and assigning reward tiers, this tool turns boring inventory management into a fun, lifestyle oriented experience 🍵💗!
 
-🙃 Functions:
+### 🙃 Functions:
 
-a. calculate_net_profit(buy_price, sell_price) : This function will take the item's purchase price and sale prices as inputs to calculate the actual earnings. It will automatically subract a 10% platform fee from the original cost to ensure user knows exactly how much "real" money was made before any spending.
+* **`calculate_net_profit(buy, sell)`**: Calculates earnings after the 10% platform and a $1.00 flat fee.
+* **`calculate_matcha_units(profit)`**: Converts net profit into "matcha currency" based on a $9.00 latte cost.
+* **`assign_reward_tier(profit)`**: Uses conditional logic to categorize the flips into "Home made" vs. "Ceremonial" tiers.
+* **`show_profit_graph()`**: **[NEW]** Uses `matplotlib` to generate a customized pink bar chart of all flips.
+* **`view_recent_flips()`**: **[NEW]** Retrieves and displays the 5 most recent entries from the database.
+* **`get_valid_float()`**: **[NEW]** An input safety funtion that prevents the program from crashing if the user enters symbols like `$` or letters.
 
-b. calculate_matcha_units(profit, matcha_cost) : This function will convert the net profit made into "matcha currency" by dividing the profit by the cost of one latte (e.g., $9.00). It returns a rounded numerical number representing the total number of drinks earned, or a specific message if the profit is too low to afford a drink.
+---
 
-c. assign_reward_tier(profit) : this function will use conditional logic to assign a specific status based on the profit amount. It'll categorize the flip into tiers ranging from "matcha made at home" for smaller profits to "Ceremonial matcha latte" for high value sales to provide the user with immediate feedback.
+### Data & Storage
 
-Data Structure: The inventory.csv file uses the following order: Item Name, Buy Price, Sell Price, Net profit, Reward Tier.
+* **`inventory.csv`**: This serves as the permanent data base, it stores:
+    `Item name | Buy Price | Sell Price | Net Profit | Reward Tier`
+* **Persistence**: Data is saved instantly and remains available after the program is closed. 
+
+---
+
+### How to run
+1. Ensure you have `uv` installed.
+2. Install dependencies:
+    `uv add matplotlib`
+3. Launch the tracker:
+    `uv run main.py`
