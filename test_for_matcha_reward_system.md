@@ -37,11 +37,31 @@ The goal of this test is to ensure the system handles low-profit or negative-pro
 
 ---
 
-## Test Scenario 3: Data Persistence (The "big project" check)
-The goal here is to prove the data is actually saved to teh CSV
+## Test Scenario 3: Data Persistence & History 🧾
+The goal here is to prove the data is actually saved to the CSV and retrieved correctly.
 
-1. **ACTION:** Select option '3' to exit the program
-2. **ACTION:** Open the folder on your computer and locate 'inventory.csv'.
-3. **EXPECTED RESULT:** The file should contain two rows of data corresponding to the "Vintage crewneck" and the "Fast fashion tee" with all calculated fields present.
-4. **ACTION:** Restart the program and select option '2' (View total matchas earned).
-5. **EXPECTED RESULT:** The program should read the csv and display a total lifetime profit of **$79.00** and **8 total lattes** earned.
+1. **ACTION:** Select option `3` to view the recent history.
+2. **EXPECTED RESULT:** Console displays "Vintage Crewneck" and "Fast fashion tee" with their profits.
+3. **ACTION:** Select option `5` to exit, then restart by using `uv run main.py`.
+4. **ACTION:** Select option `2` to view total matchas earned.
+5. **EXPECTED RESULT:** The program will display the lifetime profit and the total matchas earned proving data persisted even after being closed out. 
+
+---
+
+## Test Scenario 4: Anti - Crash safety check 🛡️
+The goal for this test is to ensure the program handles typos and symbols without crashing.
+
+1. **ACTION**: Select option `1` to add a new item into the inventory.
+2. **INPUT**: It'll ask for the buy price, add `$15.00` WITH THE DOLLAR SIGN.
+3. **INPUT**: It'll also ask for the seling price, say `twenty` AS A WORD
+4. **EXCPECTED RESULT**: It should strip the dollar sign and accept it as `15.00`, for `twenty` it should display `❌ Invalid Input!!` and prompt again. 
+5. **EXPECTED RESULT**: The program should run and not crash.
+
+---
+
+## Test Scenario 5: Data Visualization
+The goal is to verify the Matplotlib library renders the data visually.
+
+1. **ACTION**: Select option `4` to view the profit graph
+2. **EXPECTED RESULT**: A pop-up window will appear with a bar chart.
+3. **ACTION**: Close the window and return to the main menu.
