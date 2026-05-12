@@ -5,6 +5,7 @@ America I. Morfin
 
 import math
 import csv
+import matplotlib.pyplot as plt # New addition!
 
 # Function Outlines
 
@@ -44,14 +45,16 @@ def display_menu():
     print("\n--- 🍵 Matcha Reward Tracker Demo ---")
     print("1) Add new thrift flip")
     print("2) View total matchas earned")
-    print("3) Exit")
+    print("3) View recent history")
+    print("4) View Profit Graph 📈") # New!
+    print("5) Exit")
 
     choice = input("Select an option:")
 
     if choice == '1':
         item = input("Item name: ")
-        buy = float(input("Buy Price ($): "))
-        sell = float(input("Sell Price ($): "))
+        buy = get_valid_float("Buy Price ($): ")
+        sell = get_valid_float("Sell Price ($): ")
 
         profit = calculate_net_profit(buy, sell)
         drinks = calculate_matcha_units(profit)
@@ -72,10 +75,18 @@ def display_menu():
         display_menu()
     
     elif choice == '3':
-        print("Goodbye! LOCK IN!...make that money!🍵")
+        view_recent_flips()
+        display_menu()
+
+    elif choice == '4':
+        show_profit_graph()
+        display_menu()
+
+    elif choice == '5':
+        print("Goodbye! LOCK IN!...make that money! 🍵")
 
     else:
-        print("Invalid choice. Please pick 1, 2, or 3.")
+        print("Invalid choice. Please pick 1, 2, 3, or 4.")
         display_menu()
 
 def calculate_lifetime_stats():
@@ -100,6 +111,69 @@ def calculate_lifetime_stats():
     except FileNotFoundError:
         print("\n🙅‍♀️ No inventory found. Start Flipping to see stats!")
 
+def get_valid_float(prompt): 
+    """Prevents the program from crashing if the user types a letter or $ sign."""
+    while True:
+        try:
+            # 1. We get the input, remove $ signs, and strip extra spaces
+            raw_input = input(prompt).replace('$', '').strip()
+            
+            # 2. We turn it into a decimal number (float)
+            value = float(raw_input) 
+            
+            # 3. NOW we can return it
+            return value
+        except ValueError:
+            print("❌ Invalid Input!! Please enter a number (e.g., 11.50).")
+
+def view_recent_flips():
+    """Reads the CSV file and shows only the last 5 entries."""
+    try:
+        with open('inventory.csv', mode='r') as file:
+            rows = list(csv.reader(file))
+            if len(rows) <= 1: #only header exists
+                print("\n 📭 No flips recorded yet!")
+                return
+            print("\n⏰ Recent History")
+            #Shows the last 5 items
+            for row in rows[-5:]:
+                if row != "Item name": #Skip the header if it's in the last 5
+                    print(f"✅ {row}: +${row}")
+    except FileNotFoundError:
+        print("\n📭 No inventory file found.")
+
+def show_profit_graph():
+    names = []
+    profits = []
+    try:
+        with open('inventory.csv', mode='r') as file:
+            reader = csv.reader(file)
+            next(reader)  # Skip header
+            for row in reader:
+                if row:
+                    names.append(row[0])
+                    profits.append(float(row[3]))
+        
+        # Style Settings because we want it to be cute...lol
+        plt.figure(figsize=(10, 6))
+        
+        # Changes 'teal' (original color) to 'hotpink' or 'lightpink'
+        plt.bar(names, profits, color='hotpink', edgecolor='deeppink', linewidth=2)
+        
+        plt.xlabel('Items', fontweight='bold', color='darkmagenta')
+        plt.ylabel('Profit ($)', fontweight='bold', color='darkmagenta')
+        plt.title('✨ My Thrift Flip Journey ✨', fontsize=14, color='deeppink')
+        
+        plt.xticks(rotation=45)
+        plt.grid(axis='y', linestyle='--', alpha=0.3) # Adds a soft grid
+        plt.tight_layout()
+        
+        print("\n🌸 Opening your pink profit graph...")
+        plt.show()
+
+    except FileNotFoundError:
+        print("\n🙅‍♀️ No data found to graph yet.")
+
 if __name__ == "__main__":
-    # Starts program
+    # Starts the program
     display_menu()
